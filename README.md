@@ -4,10 +4,11 @@ A simple NodeJs app to search tweets with hashtags #custserv and re-tweeted at l
 ### Setting up the Application
 * Install node. Download the node installer from [here](https://nodejs.org/en/download/) 
 * Clone the repo (OR Download and extract the files). Open a terminal and go to code directory.
-* Run command `npm install`
+* Run command `npm install` - This may take a few seconds.
 * Rename the file default.json.sample from `config/default.json.sample` to `config/default.json`
 * Now open the config file `config/default.json` in a text editor and put your consumer key and secret there.
-* Additionally, you can also customize other options like 'minRetweets' and 'searchQuery' in config file, based on which the search results are fetched
+* Additionally, you can also customize other options like 'minRetweets' and 'searchQuery' ( All the hashtags should be separated by a space ) in config file, based on which the search results are fetched
+    * Note: Changes in config file require sever restart to take effect.
 * Now You can run the tests by entering the command `npm run test` from terminal
     * Note: Some tests depend on remote services( twitter APIs here ). So, if your network connection is slow/faulty, tests may timeout ( after 15 seconds )
 * To start the node server, run `npm run  start` from terminal.
