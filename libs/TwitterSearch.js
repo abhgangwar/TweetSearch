@@ -6,7 +6,7 @@ const utils 		= require('../Utils.js');
 
 let method = twitterSearch.prototype;
 
-function twitterSearch() {
+function twitterSearch(cb) {
 
 	fs.readFile('./config/default.json', (err, data) => {
 		if(err) {
@@ -33,9 +33,11 @@ function twitterSearch() {
 		auth.getAccessDetails((err, data) => {
 			if(err) {
 				console.log("Error while getting access details");
-				return;
+				return cb(err, null);
 			}
 			this._accessDetails = data;
+			console.log("Search API is now ready");
+			cb(null,"success");
 		});
 	});
 }
