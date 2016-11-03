@@ -1,16 +1,26 @@
 "use strict";
-var fs = require('fs');
+const fs = require('fs');
 
+// NodeJs module for OAuth2 authentication.
+const OAuth2 = require('simple-oauth2');
+
+// To add extra functions to the prototype later
 let method = initAuth.prototype;
 
+/**
+ * Used for authenticating with twitter and fetching tbe bearer access token.
+ * @param credentials The required credentials to authenticate with twitter
+ * Credentials contain consumer key and secret and the API endpoint from where
+ * the access token is to be requested. See config/default.json.sample for exact details.
+ */
 function initAuth(credentials) {
-	this._oauth2 = require('simple-oauth2').create(credentials);
+	this._oauth2 = OAuth2.create(credentials);
+
 	// Function to refresh the token, if the old token is expired.
 	function _refreshToken(cb) {
 		this._accessDetails.refresh((err, data) => {
 			if(err) {
-				console.log("Error while refreshing token: ", err.message);
-				return cb(err, null);
+				throw err;
 			}
 			// Store the new token.
 			this._accessDetails = data;
@@ -38,9 +48,12 @@ method.getAccessDetails = function(cb) {
 		}
 	}
 
-	this._oauth2.clientCredentials.getToken({}, (err, data) => {
+    /**
+     * Authenticate with twitter and get the bearer access token.
+     * The token is then store in data member name '_accessDetails'.
+     */
+    this._oauth2.clientCredentials.getToken({}, (err, data) => {
 		if (err) {
-			console.log('Access Token Error', err.message);
 			return cb(err, null);
 		}
 
