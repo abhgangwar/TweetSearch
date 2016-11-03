@@ -5,7 +5,7 @@ const TwitterAPI 	= require('../libs/TwitterSearch');
 const utils 		= require('../Utils');
 
 let isSearchAPIReady = false;
-let errorMessage = "Please wait a few seconds while we authenticate with twitter";
+let errorMessage = "Please wait a few seconds while we authenticate with twitter. Retry after few seconds";
 
 /**
  * Create an instance of TwitterAPI.

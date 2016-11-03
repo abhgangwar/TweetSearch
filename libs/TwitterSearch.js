@@ -71,7 +71,6 @@ function twitterSearch(cb) {
              It will be used later to fetch search results from twitter.
              */
 			this._accessDetails = data;
-			console.log("Search API is now ready");
 			cb(null,"success");
 		});
 	});
