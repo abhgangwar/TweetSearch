@@ -1,10 +1,10 @@
 "use strict";
+var fs = require('fs');
 
 let method = initAuth.prototype;
 
 function initAuth(credentials) {
 	this._oauth2 = require('simple-oauth2').create(credentials);
-
 	// Function to refresh the token, if the old token is expired.
 	function _refreshToken(cb) {
 		this._accessDetails.refresh((err, data) => {
