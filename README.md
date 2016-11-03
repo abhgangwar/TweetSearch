@@ -16,6 +16,8 @@ A simple NodeJs app to search tweets with hashtags #custserv and re-tweeted at l
 
 ![SearchResult](https://github.com/abhgangwar/TweetSearch/blob/master/screenshots/browerView.png)
 
+* A publicly accessible URL of this app is available [here](http://52.26.56.137:1169/)
+
 ### Code description
 * `lib/` contains all the custom classes/modules
     * `lib/TwitterOAuth.js` - Authenticates to twitter using consumer key and secret and fetches the bearer access token.
