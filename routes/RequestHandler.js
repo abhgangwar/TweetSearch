@@ -19,36 +19,35 @@ let errorMessage = "Please wait a few seconds while we authenticate with twitter
 const twitterSearch = new TwitterAPI((err, success) => {
     // If any error while authenticating with twitter, store in 'errorMessage' var
     if(err) {
-		errorMessage = err.message;
-		return;
-	}
-	isSearchAPIReady = true;
+        errorMessage = err.message;
+        return;
+    }
+    isSearchAPIReady = true;
 });
 
 function reqHandler(req, res){
-	if(!isSearchAPIReady) {
-		const response = {
-			error: errorMessage
-		}
+    if(!isSearchAPIReady) {
+        const response = {
+            error: errorMessage
+        }
 
         // Setting the required headers and status code here.
-		res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
+        res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
         // Send the response.
-		res.end(JSON.stringify(response));
-		return;
-	}
+        res.end(JSON.stringify(response));
+        return;
+    }
 
     // 'TwitterAPI' is ready to use. Search the tweets
-	twitterSearch.searchTweets((err, data) => {
-		if(err) {
-			return res.end("error: " + err.message);
-		}
-
-		res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+    twitterSearch.searchTweets((err, data) => {
+        if(err) {
+            return res.end("error: " + err.message);
+        }
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
         // Get an html code to render the search results in a browser.
-		const htmlData = utils.prettifyRawTweets(JSON.parse(data));
-		res.end(htmlData);
-	});
+        const htmlData = utils.prettifyRawTweets(JSON.parse(data));
+        res.end(htmlData);
+    });
 }
 
 module.exports = reqHandler

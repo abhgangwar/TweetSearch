@@ -12,15 +12,14 @@ module.exports.prettifyRawTweets 	= prettifyRawTweets;
  * @returns {string} The URL encoded query string.
  */
 function buildQueryString(queryParams) {
-	let queryString = "?";
+    let queryString = "?";
     // Iterate through each key-value pair and extend the query string 'queryString'
-	for(let key in queryParams) {
-		queryString += key + "=" + encodeURIComponent(queryParams[key]) + "&";
-	}
-
-	// Remove the unnecessary '&' char at the end of queryString
-	queryString = queryString.slice(0, -1);
-	return queryString;
+    for(let key in queryParams) {
+        queryString += key + "=" + encodeURIComponent(queryParams[key]) + "&";
+    }
+    // Remove the unnecessary '&' char at the end of queryString
+    queryString = queryString.slice(0, -1);
+    return queryString;
 }
 
 /**
@@ -33,23 +32,21 @@ function buildQueryString(queryParams) {
  */
 function prettifyRawTweets(tweetsData) {
     // Get the array of tweets.
-	const tweets = tweetsData.statuses;
+    const tweets = tweetsData.statuses;
     // A new array to contain html code (as a string) for every tweet wrapped in a <p> tag
-	const prettifiedTweets = [];
-	for(let i=0; i<tweets.length; ++i) {
-
+    const prettifiedTweets = [];
+    for(let i=0; i<tweets.length; ++i) {
         // Also print the tweets on terminal.
-		console.log(tweets[i].text + "\nRetweets: " + tweets[i].retweet_count + "\n\n");
-
+        console.log(tweets[i].text + "\nRetweets: " + tweets[i].retweet_count + "\n\n");
         // Create html code to display the tweet in a browser.
-		let tweet = "<p>";
-		tweet += tweets[i].text + "<br>Retweets: " + tweets[i].retweet_count;
-		const createdAt = new Date(tweets[i].created_at);
-		tweet += " (Tweeted at: " + createdAt.toString() + ")";
-		tweet += "</p>"
-		prettifiedTweets.push(tweet);
-	}
+        let tweet = "<p>";
+        tweet += tweets[i].text + "<br>Retweets: " + tweets[i].retweet_count;
+        const createdAt = new Date(tweets[i].created_at);
+        tweet += " (Tweeted at: " + createdAt.toString() + ")";
+        tweet += "</p>"
+        prettifiedTweets.push(tweet);
+    }
 
-	// Each tweet separated by a new line.
+    // Each tweet separated by a new line.
     return prettifiedTweets.join('<br>');
 }

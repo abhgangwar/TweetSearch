@@ -1,6 +1,6 @@
 "use strict";
-const http 			= require('http');
-const reqHandler 	= require('./routes/RequestHandler');
+const http          = require('http');
+const reqHandler    = require('./routes/RequestHandler');
 
 // Create a server
 const server = http.createServer(reqHandler);
