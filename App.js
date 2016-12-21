@@ -6,4 +6,4 @@ const reqHandler    = require('./routes/RequestHandler');
 const server = http.createServer(reqHandler);
 
 // Provide a port on which server will listen for http requests.
-server.listen(80);
+server.listen(process.env.PORT || 5000);
