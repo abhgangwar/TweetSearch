@@ -1,30 +1,24 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Tweets Search</title>
+	<title>Table Style</title>
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
 	<link href="css/tweetView.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
 </head>
 
 
 <body>
-<table class="table table-striped"">
-<thead>
-<tr>
-<th class="table-title">
-<a href="/"> <div class="col-sm-1 text-left glyphicon glyphicon-search"></div> </a>
-<div class="col-sm-11"><h4 class="text-center">Search Results</h4></div>
-</th>
-</tr>
-</thead>
-<tbody>
-{{tweets_data}}
-</tbody>
-</table>
- 
+<div class="container-fluid row page-title">
+	<a href="/"> <div class="col-sm-1 text-left glyphicon glyphicon-search"></div> </a>
+	<div class="col-sm-11"><h4 class="text-center">Search Results</h4></div>
+</div>
+<div class="content">
+	{{tweets_data}}
+</div>  
  <script src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
  <script type="text/javascript" src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script type="text/javascript" src = "js/tweetView.js"></script>
- 
 </body>

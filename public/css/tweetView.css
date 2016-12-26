@@ -9,34 +9,30 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-.table-title {
+.page-title {
    font-weight:400;
    color: #FFFFFF;
    background-color: #192346;
-   padding: 20px !important;
+   padding: 8px !important;
    border-bottom: 1px solid #797d6b;
 }
 
 .clickable {
   cursor: pointer;
-  background-color: #ccc;
+  background:#f2f2f2;
 }
 
-td {
-  background:#f2f2f2;
-  border-top: 1px solid #b2b2b2;
+.content div {
   border-bottom: 1px solid #b2b2b2;
 }
 
-tr:nth-child(odd) td {
+.content div:nth-child(odd) div{
   background:#e5e5e5;
 }
 
-tr:hover td {
+.content div:hover div{
   background:#5576ea;
   color:#FFFFFF;
-  border-top: 1px solid #22262e;
-  border-bottom: 1px solid #22262e;
 }
 
 .text-left {

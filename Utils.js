@@ -39,12 +39,17 @@ function prettifyRawTweets(tweetsData, cb) {
     for(let i=0; i<tweets.length; ++i) {
         // Create html code to display the tweet in a browser.
         const createdAt = new Date(tweets[i].created_at);
-        let tweet = "<tr class='clickable' data-href='https://twitter.com/statuses/" + tweets[i].id_str + "'>";
-        tweet += "<td>";
-        tweet += "<h4>" + tweets[i].text + "</h4>"
-        tweet += "<p>Retweets: " + tweets[i].retweet_count + " (Tweeted at: " + createdAt.toString() + ")</p>";
-        tweet += "</td>";
-        tweet += "</tr>";
+        let filePath = path.parse(tweets[i].user.profile_image_url);
+        const name = filePath.name.replace('_normal', '');
+        filePath = filePath.dir + '/' + name + filePath.ext;
+        let tweet = '<div class="clickable" data-href="https://twitter.com/statuses/' + tweets[i].id_str + '">';
+        tweet += '<div class="row">';
+        tweet += '<img class="col-sm-1 img-circle" src="' + filePath + '" />';
+        tweet += '<h4 class="col-sm-11">' + tweets[i].text + '</h4>';
+        tweet += '<p class="col-sm-11">' + 'Retweets: ' + tweets[i].retweet_count + ' (Tweeted at: ' + createdAt.toString() +')</p>';
+        tweet += '</div>';
+        tweet += '</div>';
+
         prettifiedTweets.push(tweet);
     }
 

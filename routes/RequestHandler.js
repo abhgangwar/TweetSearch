@@ -51,6 +51,7 @@ function reqHandler(req, res){
         // Get an html code to render the search results in a browser.
         data = JSON.parse(data);
         if(data.statuses.length) {
+            //console.log("0: ", data.statuses[0]);
             utils.prettifyRawTweets(data, function (err, html) {
                 if(err) {
                     res.end(JSON.stringify(data.statues));
