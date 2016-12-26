@@ -1,5 +1,6 @@
 "use strict";
-
+const fs    = require('fs');
+const path  = require('path');
 // All exports here
 module.exports.buildQueryString 	= buildQueryString;
 module.exports.prettifyRawTweets 	= prettifyRawTweets;
@@ -30,23 +31,31 @@ function buildQueryString(queryParams) {
  * @param tweetsData {object} An object that contains the tweets search result.
  * @returns {string} The HTML code in a string.
  */
-function prettifyRawTweets(tweetsData) {
+function prettifyRawTweets(tweetsData, cb) {
     // Get the array of tweets.
     const tweets = tweetsData.statuses;
     // A new array to contain html code (as a string) for every tweet wrapped in a <p> tag
     const prettifiedTweets = [];
     for(let i=0; i<tweets.length; ++i) {
-        // Also print the tweets on terminal.
-        console.log(tweets[i].text + "\nRetweets: " + tweets[i].retweet_count + "\n\n");
         // Create html code to display the tweet in a browser.
-        let tweet = "<p>";
-        tweet += tweets[i].text + "<br>Retweets: " + tweets[i].retweet_count;
         const createdAt = new Date(tweets[i].created_at);
-        tweet += " (Tweeted at: " + createdAt.toString() + ")";
-        tweet += "</p>"
+        let tweet = "<tr class='clickable' data-href='https://twitter.com/statuses/" + tweets[i].id_str + "'>";
+        tweet += "<td>";
+        tweet += "<h4>" + tweets[i].text + "</h4>"
+        tweet += "<p>Retweets: " + tweets[i].retweet_count + " (Tweeted at: " + createdAt.toString() + ")</p>";
+        tweet += "</td>";
+        tweet += "</tr>";
         prettifiedTweets.push(tweet);
     }
 
-    // Each tweet separated by a new line.
-    return prettifiedTweets.join('<br>');
+    fs.readFile(path.join(__dirname + '/public/tweetsView.html'), function (err, data) {
+        if(err) {
+            console.log("Error while reading view template.", err);
+            // Send simple html
+            return cb(null, prettifiedTweets.join('<br>'));
+        }
+        data = data.toString();
+        data = data.replace('{{tweets_data}}', prettifiedTweets.join('\n'));
+        return cb(null, data);
+    });
 }

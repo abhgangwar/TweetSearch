@@ -1,0 +1,17 @@
+{
+	"twitter": {
+		"auth": {
+			"tokenHost": "https://api.twitter.com",
+			"tokenPath": "oauth2/token",
+			"revokePath": "oauth2/invalidate_token"
+		},
+		"client": {
+			"id": "7atnb8mcb6JXjBKdNFe1996tE",
+			"secret": "3KgChKOmg92jcnB0xzLzNu4GyhPQHrjyHnEqcYUdh9ncF6dZA2"
+		},
+		"searchUrl": "https://api.twitter.com/1.1/search/tweets.json",
+		"searchAPIMethod": "GET",
+		"searchQuery": "#custserv #job",
+		"minRetweets": 1
+	}
+}
