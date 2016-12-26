@@ -4,6 +4,7 @@
   "description": "Searches tweets with specific hashtags and using other filters also",
   "main": "App.js",
   "dependencies": {
+    "express": "^4.14.0",
     "http": "^0.0.0",
     "mocha": "^3.1.2",
     "request": "^2.76.0",

@@ -1,8 +1,8 @@
 "use strict";
 // To fetch tweet search results.
 const TwitterAPI 	= require('../libs/TwitterSearch');
-// Common utility functions.
 const utils 		= require('../Utils');
+const path          = require('path');
 
 let isSearchAPIReady = false;
 let errorMessage = "Please wait a few seconds while we authenticate with twitter. Retry after few seconds";
@@ -29,7 +29,7 @@ function reqHandler(req, res){
     if(!isSearchAPIReady) {
         const response = {
             error: errorMessage
-        }
+        };
 
         // Setting the required headers and status code here.
         res.writeHead(200, {'Content-Type': 'application/json; charset=utf-8'});
@@ -38,6 +38,10 @@ function reqHandler(req, res){
         return;
     }
 
+    const query = decodeURIComponent(req.query.q);
+    if(query !== 'undefined') {
+        twitterSearch.setSearchQuery(query);
+    }
     // 'TwitterAPI' is ready to use. Search the tweets
     twitterSearch.searchTweets((err, data) => {
         if(err) {
@@ -45,9 +49,26 @@ function reqHandler(req, res){
         }
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
         // Get an html code to render the search results in a browser.
-        const htmlData = utils.prettifyRawTweets(JSON.parse(data));
-        res.end(htmlData);
+        data = JSON.parse(data);
+        if(data.statuses.length) {
+            utils.prettifyRawTweets(data, function (err, html) {
+                if(err) {
+                    res.end(JSON.stringify(data.statues));
+                    return;
+                }
+                res.end(html);
+                return;
+            });
+        }
+        else {
+            res.end("<h2>No tweets founds</h2>");
+        }
     });
 }
 
-module.exports = reqHandler
+function homePage(req, res, next) {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+}
+
+module.exports.search = reqHandler;
+module.exports.homePage = homePage;

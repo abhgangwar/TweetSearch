@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+  <!-- title and meta -->
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1.0" name="viewport">
+
+  <title>Search Recent Tweets</title>
+  <style>
+    body {
+        background-color: #9c764e;
+        text-align:center;
+        height: 100%
+    }
+    p {
+        color:white;
+        font-size:18px
+    }
+    .wrapper {
+        margin-top:5em
+    }
+    .style-2 input[type="text"] {
+        padding: 10px;
+        border: solid 5px #c9c9c9;
+        transition: border 0.3s;
+        width: 50em;
+        margin-bottom: 10px
+    }
+    .buttonStyle {
+      background-color:#845422;
+      color:white;
+      padding:5px;
+      font-size:18px;
+    }
+    .inputArea {
+        background-color:#5c3a17;
+        color:white;
+        padding:5px;
+        font-size:16px;
+    }
+</style>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <p> Type your search query below. Separate the hashtags with a comma.</p>
+            <form action="/search" method="GET">
+                <div class="style-2">
+                    <input type="text" class="inputArea" placeholder="Type your query" name="q">
+                </div>
+                <input type="submit" class="buttonStyle" value="Submit">
+            </form>
+    </div>
+</body>

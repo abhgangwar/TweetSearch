@@ -43,7 +43,6 @@ function twitterSearch(cb) {
         */
         this._queryParams = {
         q: this._twitterConfig.searchQuery
-            + " min_retweets:" + this._twitterConfig.minRetweets
         };
 
         /*
@@ -94,14 +93,14 @@ method.searchTweets = function (cb) {
     // Set Authorization headers
     const reqHeaders = {
         "Authorization": "Bearer " + this._accessDetails.access_token
-    }
+    };
 
     // Options for search API call
     const options = {
         headers: reqHeaders,
         uri: searchUrl,
         method: this._twitterConfig.searchAPIMethod
-    }
+    };
 
 	// Request the search API
     request(options, (err, res, body) => {
@@ -113,5 +112,10 @@ method.searchTweets = function (cb) {
         cb(null, body);
     });
 }
+
+method.setSearchQuery = function(queryString) {
+    if(queryString !== 'undefined' && queryString.length > 0)
+    this._queryParams.q = queryString;
+};
 
 module.exports = twitterSearch;

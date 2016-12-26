@@ -1,9 +1,11 @@
 "use strict";
-const http          = require('http');
-const reqHandler    = require('./routes/RequestHandler');
+const express    = require('express');
+const reqHandler = require('./routes/RequestHandler');
 
-// Create a server
-const server = http.createServer(reqHandler);
+var app = express();
+app.use(express.static('public'));
+app.get('/', reqHandler.homePage);
+app.get('/search', reqHandler.search);
 
 // Provide a port on which server will listen for http requests.
-server.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 5000);
