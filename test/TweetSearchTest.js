@@ -7,7 +7,7 @@ describe('Tweets search', function() {
 	});
 
 	// Test whether the tweets are searched properly without any error
-    it('should instantiate the TwitterSearch object properly', function(done) {
+    it('should search the tweets', function(done) {
 		const twitterObj = new TwitterSearch(function(err, success) {
 			if(err) done(err);
 			twitterObj.searchTweets(done);
