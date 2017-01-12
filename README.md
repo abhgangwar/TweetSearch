@@ -12,11 +12,11 @@ A simple NodeJs app to search tweets with hashtags #custserv and re-tweeted at l
 * Now You can run the tests by entering the command `npm run test` from terminal
     * Note: Some tests depend on remote services( twitter APIs here ). So, if your network connection is slow/faulty, tests may timeout ( after 15 seconds )
 * To start the node server, run `npm run  start` from terminal.
-* Now open `127.0.0.1:3000` from a web browser. Yay ! Tweets search results are displayed :D
+* Now open `127.0.0.1:5000` from a web browser. Yay ! Tweets search results are displayed :D
 
 ![SearchResult](https://github.com/abhgangwar/TweetSearch/blob/master/screenshots/browerView.png)
 
-* A publicly accessible URL of this app is available [here](http://52.26.56.137:1169/)
+* A publicly accessible URL of this app is available [here](https://abh-tweet-search.herokuapp.com/)
 
 ### Code description
 * `lib/` contains all the custom classes/modules
